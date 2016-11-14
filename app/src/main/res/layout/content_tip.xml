@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,90 +15,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main.button.caf"
-        android:id="@+id/btnCaF"
-        android:layout_below="@+id/inputBill"
-        android:layout_alignLeft="@id/inputBill"
-        android:layout_alignStart="@id/inputBill"/>
 
-    <!-- btnSubmit
-    android:layout_alignTop="@+id/btnCaF"
-        android:layout_toRightOf="@id/btnCaF"
-        android:layout_toEndOf="@id/btnCaF"
-    -->
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main.button.cak"
-        android:id="@+id/btnCaK"
-        android:layout_alignTop="@+id/btnCaF"
-        android:layout_toRightOf="@id/btnCaF"
-        android:layout_toEndOf="@id/btnCaF"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main.button.kac"
-        android:id="@+id/btnKaC"
-        android:layout_alignTop="@+id/btnCaK"
-        android:layout_toRightOf="@id/btnCaK"
-        android:layout_toEndOf="@id/btnCaK"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main.button.kaf"
-        android:id="@+id/btnKaF"
-        android:layout_alignTop="@+id/btnKaC"
-        android:layout_toRightOf="@id/btnKaC"
-        android:layout_toEndOf="@id/btnKaC"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main.button.fac"
-        android:id="@+id/btnFaC"
-        android:layout_below="@+id/btnCaK"
-        android:layout_alignLeft="@id/btnCaK"
-        android:layout_alignStart="@id/btnCaK"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main.button.fak"
-        android:id="@+id/btnFaK"
-        android:layout_alignTop="@+id/btnFaC"
-        android:layout_toRightOf="@id/btnFaC"
-        android:layout_toEndOf="@id/btnFaC"
-        />
-
-
-<!--
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberSigned"
-        android:hint="@string/main.hint.percentage"
-        android:ems="10"
-        android:id="@+id/inputPercentage"
-        android:layout_alignBottom="@+id/btnIncrease"
-        android:layout_toStartOf="@+id/btnIncrease"
-        android:layout_toLeftOf="@+id/btnIncrease" />
-
-
-        android:layout_below="@+id/inputBill"
-        android:layout_alignLeft="@id/inputBill"
-        android:layout_alignStart="@id/inputBill"
-        
-        btnCaF
--->
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
@@ -119,12 +37,76 @@
         android:layout_toRightOf="@id/btnIncrease"
         android:layout_toEndOf="@id/btnIncrease" />
 
+    <TextView
+        android:text="Grados IN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnIncrease"
+        android:id="@+id/txtIn"/>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtIn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/spinnerIn" />
+
+    <TextView
+        android:text="Grados OUT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerIn"
+        android:id="@+id/txtOut"/>
+
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtOut"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/spinnerOut" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main.button.submit"
+        android:id="@+id/btnSubmit"
+        android:layout_below="@+id/spinnerOut"/>
+
+
+
+<!--
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:hint="@string/main.hint.percentage"
+        android:ems="10"
+        android:id="@+id/inputPercentage"
+        android:layout_alignBottom="@+id/btnIncrease"
+        android:layout_toStartOf="@+id/btnIncrease"
+        android:layout_toLeftOf="@+id/btnIncrease" />
+
+
+        android:layout_below="@+id/inputBill"
+        android:layout_alignLeft="@id/inputBill"
+        android:layout_alignStart="@id/inputBill"
+        
+        btnCaF
+
+
+
+-->
+
+
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/main.button.clear"
         android:id="@+id/btnClear"
-        android:layout_below="@+id/btnFaC"
+        android:layout_below="@+id/btnSubmit"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -136,9 +118,9 @@
         android:id="@+id/separator"
         android:layout_below="@id/btnClear"
         android:layout_alignStart="@+id/btnClear"
-        android:layout_alignEnd="@+id/btnCaF"
+        android:layout_alignEnd="@+id/spinnerOut"
         android:layout_alignLeft="@+id/btnClear"
-        android:layout_alignRight="@+id/btnCaF" />
+        android:layout_alignRight="@+id/spinnerOut" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -151,6 +133,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         />
+
+
 
 </RelativeLayout>
 

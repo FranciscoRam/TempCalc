@@ -9,13 +9,29 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
+
 
 public class MainActivity extends AppCompatActivity {
+    Spinner spinIn;
+    Spinner spinOut;
+    String[] gradoIn= {"Celcius", "Fahrenheit", "Kelvin"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        spinIn = (Spinner)findViewById(R.id.spinnerIn);
+
+        ArrayAdapter<String> adapt = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,gradoIn);
+        spinIn.setAdapter(adapt);
+
+        spinOut = (Spinner)findViewById(R.id.spinnerOut);
+
+        spinOut.setAdapter(adapt);
     }
 
     @Override
