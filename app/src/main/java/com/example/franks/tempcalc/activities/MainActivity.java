@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,17 +21,19 @@ import com.example.franks.tempcalc.R;
 import com.example.franks.tempcalc.fragments.TipHistoryListFragment;
 import com.example.franks.tempcalc.fragments.TipHistoryListFragmentListener;
 
-import com.example.franks.tempcalc.R;
+
 import com.example.franks.tempcalc.TempCalcApp;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import java.util.Date;
+import com.example.franks.tempcalc.models.TipRecord;
 
 public class MainActivity extends AppCompatActivity {
     Spinner spinIn;
     Spinner spinOut;
-    String[] gradoIn= {"Celcius", "Fahrenheit", "Kelvin"};
+    String[] gradoIn= {"Celsius", "Fahrenheit", "Kelvin"};
 
     @Bind(R.id.inputBill)
     EditText inputBill;
@@ -105,13 +108,47 @@ public class MainActivity extends AppCompatActivity {
 
             //INSERVIBLE VERIFICAR COMO QUITAR
             //int tipPercentage = getTipPrecentage();
-            int tipResu = getTipResu();
-
+            //int tipResu = getTipResu();
+            double tipResu = 1;
             //double tip = total * (tipResu/100d);
-            double tip = tipResu;
+            TipRecord record = new TipRecord();
 
-            String strTip = String.format(getString(R.string.global_message_tip), tip);
-            fragmentListener.action(strTip);
+            record.setBill(total);
+
+
+            String IN= spinIn.getItemAtPosition(spinIn.getSelectedItemPosition()).toString();
+            String OUT= spinOut.getItemAtPosition(spinOut.getSelectedItemPosition()).toString();
+
+
+            if(IN.equals("Celsius")&&OUT.equals("Fahrenheit")){ //C a F
+                tipResu=total*1.8+32;}
+
+            if(IN.equals("Celsius")&&OUT.equals("Kelvin")){ //C a K
+                tipResu=total+273.15;}
+
+            if(IN.equals("Fahrenheit")&&OUT.equals("Celsius")){ //F a C
+                tipResu=(total-32)/1.8;}
+
+            if(IN.equals("Fahrenheit")&&OUT.equals("Kelvin")){ //F a K
+                tipResu=((total-32)/1.8)+273.15;}
+
+            if(IN.equals("Kelvin")&&OUT.equals("Celsius")){ //K a C
+                tipResu=total-273.15;}
+
+            if(IN.equals("Kelvin")&&OUT.equals("Fahrenheit")){ //K a F
+                tipResu=1.8*(total-273.15)+32;}
+
+            if (IN==OUT){ //Mismas Unidades
+               tipResu=total;
+            }
+
+            record.setTipPercentage(tipResu);
+
+            record.setTimestamp(new Date());
+
+            String strTip = String.format(getString(R.string.global_message_tip), record.getTip());
+            fragmentListener.addToList(record);
+
             txtTip.setVisibility(View.VISIBLE);
             txtTip.setText(strTip);
         }
@@ -129,7 +166,11 @@ public class MainActivity extends AppCompatActivity {
         handleTipChange(-TIP_STEP_CHANGE);
     }
 
-    public int getTipResu() {
+    //MODIFICAR ESTA PARTE PARA LAS TEMPERATURAS
+/*
+
+*/
+public int getTipResu() {
         int tipChange = DEFAULT_TIP_CHANGE;
 
         String strInputTipChange = inputBill.getText().toString().trim();
@@ -141,9 +182,10 @@ public class MainActivity extends AppCompatActivity {
             inputBill.setText(String.valueOf(DEFAULT_TIP_CHANGE));
         }
 
-
         return tipChange;
+
     }
+
 
 
     public void handleTipChange(int change) {

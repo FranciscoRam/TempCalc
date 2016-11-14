@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class TipRecord {
     private double bill;
-    private int tipPercentage;
+    private double tipPercentage;
     private Date timestamp;
 
     public double getBill() {
@@ -16,11 +16,11 @@ public class TipRecord {
         this.bill = bill;
     }
 
-    public int getTipPercentage() {
+    public double getTipPercentage() {
         return tipPercentage;
     }
 
-    public void setTipPercentage(int tipPercentage) {
+    public void setTipPercentage(double tipPercentage) {
         this.tipPercentage = tipPercentage;
     }
 
@@ -33,7 +33,7 @@ public class TipRecord {
     }
 
     public double getTip() {
-        return bill * (tipPercentage/100d);
+        return tipPercentage;
     }
 
     public String getDateFormated() {
