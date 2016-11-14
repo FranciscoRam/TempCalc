@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -19,10 +20,18 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder> {
 
     private Context context;
     private List<TipRecord> dataset;
+    private OnItemClickListener onItemClickListener;
 
-    public TipAdapter(Context context, List<TipRecord> dataset) {
+    public TipAdapter(Context context, List<TipRecord> dataset, OnItemClickListener onItemClickListener) {
         this.context = context;
         this.dataset = dataset;
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public TipAdapter(Context context, OnItemClickListener onItemClickListener) {
+        this.context = context;
+        this.dataset = new ArrayList<TipRecord>();
+        this.onItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -36,6 +45,7 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder> {
         TipRecord element = dataset.get(position);
         String strTip = String.format(context.getString(R.string.global_message_tip), element.getTip());
         holder.txtContent.setText(strTip);
+        holder.setOnItemClickListener(element, onItemClickListener);
     }
 
     @Override
@@ -63,6 +73,18 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder> {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+
+
+        public void setOnItemClickListener(final TipRecord element, final OnItemClickListener onItemClickListener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onItemClick(element);
+                }
+            });
+        }
+
+
     }
 
 }

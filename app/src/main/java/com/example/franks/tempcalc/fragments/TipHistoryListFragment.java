@@ -15,15 +15,16 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-
+import android.util.Log;
 
 import com.example.franks.tempcalc.adapters.TipAdapter;
 import com.example.franks.tempcalc.models.TipRecord;
+import com.example.franks.tempcalc.adapters.OnItemClickListener;
 
 import com.example.franks.tempcalc.R;
 
 
-public class TipHistoryListFragment extends Fragment implements TipHistoryListFragmentListener {
+public class TipHistoryListFragment extends Fragment implements TipHistoryListFragmentListener, OnItemClickListener {
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
 
@@ -44,7 +45,7 @@ public class TipHistoryListFragment extends Fragment implements TipHistoryListFr
 
     private void initAdapter() {
         if(adapter == null) {
-            adapter = new TipAdapter(getActivity().getApplicationContext(), new ArrayList<TipRecord>());
+            adapter = new TipAdapter(getActivity().getApplicationContext(), this);
         }
     }
 
@@ -61,4 +62,11 @@ public class TipHistoryListFragment extends Fragment implements TipHistoryListFr
         public void clearList() {
         adapter.clear();
     }
+
+    @Override
+    public void onItemClick(TipRecord tipRecord) {
+        // TODO Implementar la logica para llamar una actividad enviandole la información de la propina
+        Log.v("MENSAJE!!!!!!!!!",tipRecord.getDateFormated());
+    }
+
 }
