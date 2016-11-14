@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">TempCalc</string>
     <string name="main.hint.bill">Grados</string>
-    <string name="main.button.caf">Cen a Far</string>
+    <string name="main.button.caf">Cen->Far</string>
+    <string name="main.button.cak">Cen->Kel</string>
+    <string name="main.button.kac">Kel->Cel</string>
+    <string name="main.button.kaf">Kel->Far</string>
+    <string name="main.button.fac">Far->Cel</string>
+    <string name="main.button.fak">Far->Kel</string>
     <!--
     <string name="main.hint.percentage">% de propina</string>
     -->
