@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_datos"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.franks.tempcalc.Datos">
+
+    <TextView android:text="Nombre: Francisco Ramirez Garnica"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtNom"
+        />
+    <TextView android:text="Carrera: Ingenieria en Sistemas Computacionales"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtCar"
+        android:layout_below="@id/txtNom"/>
+
+    <TextView android:text="Materia: Apliaciones Moviles "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtMat"
+        android:layout_below="@id/txtCar"/>
+
+    <TextView android:text="e-mail: r.g.francisco40@gmail.com"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtGma"
+        android:layout_below="@id/txtMat"/>
+
+    <TextView android:text="Contacto:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtCont"
+        android:layout_below="@id/txtGma"/>
+
+    <TextView android:text="
+        https://www.facebook.com/frg.ramirezg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtFac"
+        android:layout_below="@id/txtCont"/>
+
+    <TextView android:text="
+        https://twitter.com/walkingshadow12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtTwi"
+        android:layout_below="@id/txtFac"/>
+
+    <TextView android:text="
+        https://github.com/FranciscoRam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtGit"
+        android:layout_below="@id/txtTwi"/>
+
+
+
+
+
+</RelativeLayout>
