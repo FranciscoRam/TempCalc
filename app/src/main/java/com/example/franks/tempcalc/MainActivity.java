@@ -7,6 +7,7 @@ import android.net.Uri;
 
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 
 import android.util.Log;
@@ -21,6 +22,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     TextView txtTip;
 
     private final static int TIP_STEP_CHANGE = 1;
-    private final static int DEFAULT_TIP_CHANGE = 10;
+    private final static int DEFAULT_TIP_CHANGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         spinOut.setAdapter(adapt);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -98,7 +101,8 @@ public class MainActivity extends AppCompatActivity {
             //int tipPercentage = getTipPrecentage();
             int tipResu = getTipResu();
 
-            double tip = total * (tipResu/100d);
+            //double tip = total * (tipResu/100d);
+            double tip = total * tipResu;
 
             String strTip = String.format(getString(R.string.global_message_tip), tip);
             txtTip.setVisibility(View.VISIBLE);
@@ -106,21 +110,42 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @OnClick(R.id.btnIncrease)
     public void handleClickIncrease() {
-        // Cuando des click a + debe llamar a handleTipChange y sumar 1
+        hideKeyboard();
+        handleTipChange(TIP_STEP_CHANGE);
     }
 
+    @OnClick(R.id.btnDecrease)
     public void handleClickDecrease() {
-        // Cuando des click a - debe llamar a handleTipChange y restar 1
+        hideKeyboard();
+        handleTipChange(-TIP_STEP_CHANGE);
     }
 
     public int getTipResu() {
+        int tipChange = DEFAULT_TIP_CHANGE;
 
-        return DEFAULT_TIP_CHANGE;
+        String strInputTipPercentage = inputBill.getText().toString().trim();
+
+        if(!strInputTipPercentage.isEmpty()) {
+            tipChange = Integer.parseInt(strInputTipPercentage);
+        }
+        else {
+            inputBill.setText(String.valueOf(DEFAULT_TIP_CHANGE));
+        }
+
+
+        return tipChange;
     }
 
 
     public void handleTipChange(int change) {
+        int tipRes = getTipResu();
+        tipRes += change;
+
+        if(tipRes > 0) {
+            inputBill.setText(String.valueOf(tipRes));
+        }
         // 1 Llamar a Get Tip Percentage (en una variable)
         // 2 aplicar el incremento/decremento que viene en la variable change
         // 3 si tipPercentage mayor que 0 entonces colocar el valor del incremento en el input de la vista
