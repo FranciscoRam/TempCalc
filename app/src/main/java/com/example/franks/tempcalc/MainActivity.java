@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -87,7 +88,45 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.btnSubmit)
     public void handleSubmit() {
         hideKeyboard();
+
+        String strInputTotal = inputBill.getText().toString().trim();
+
+        if(!strInputTotal.isEmpty()) {
+            double total = Double.parseDouble(strInputTotal);
+
+            //INSERVIBLE VERIFICAR COMO QUITAR
+            //int tipPercentage = getTipPrecentage();
+            int tipResu = getTipResu();
+
+            double tip = total * (tipResu/100d);
+
+            String strTip = String.format(getString(R.string.global_message_tip), tip);
+            txtTip.setVisibility(View.VISIBLE);
+            txtTip.setText(strTip);
+        }
     }
+
+    public void handleClickIncrease() {
+        // Cuando des click a + debe llamar a handleTipChange y sumar 1
+    }
+
+    public void handleClickDecrease() {
+        // Cuando des click a - debe llamar a handleTipChange y restar 1
+    }
+
+    public int getTipResu() {
+
+        return DEFAULT_TIP_CHANGE;
+    }
+
+
+    public void handleTipChange(int change) {
+        // 1 Llamar a Get Tip Percentage (en una variable)
+        // 2 aplicar el incremento/decremento que viene en la variable change
+        // 3 si tipPercentage mayor que 0 entonces colocar el valor del incremento en el input de la vista
+
+    }
+
 
     private void hideKeyboard() {
         InputMethodManager inputManager= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
