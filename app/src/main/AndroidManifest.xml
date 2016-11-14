@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.TipDetailActivity"></activity>
+        <activity android:name=".activities.activity_detail"></activity>
         <activity android:name=".Datos">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
