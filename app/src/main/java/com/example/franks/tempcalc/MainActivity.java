@@ -1,5 +1,8 @@
 package com.example.franks.tempcalc;
 
+import com.example.franks.tempcalc.fragments.TipHistoryListFragment;
+import com.example.franks.tempcalc.fragments.TipHistoryListFragmentListener;
+
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.input.InputManager;
@@ -28,6 +31,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+
+
 public class MainActivity extends AppCompatActivity {
     Spinner spinIn;
     Spinner spinOut;
@@ -50,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.txtTip)
     TextView txtTip;
 
+    private TipHistoryListFragmentListener fragmentListener;
+
     private final static int TIP_STEP_CHANGE = 1;
     private final static int DEFAULT_TIP_CHANGE = 1;
 
@@ -59,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+
+
+        TipHistoryListFragment fragment = (TipHistoryListFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentList);
+        fragment.setRetainInstance(true);
+        fragmentListener = (TipHistoryListFragmentListener) fragment;
 
         spinIn = (Spinner)findViewById(R.id.spinnerIn);
 
@@ -102,9 +114,10 @@ public class MainActivity extends AppCompatActivity {
             int tipResu = getTipResu();
 
             //double tip = total * (tipResu/100d);
-            double tip = total * tipResu;
+            double tip = tipResu;
 
             String strTip = String.format(getString(R.string.global_message_tip), tip);
+            fragmentListener.action(strTip);
             txtTip.setVisibility(View.VISIBLE);
             txtTip.setText(strTip);
         }
@@ -125,10 +138,10 @@ public class MainActivity extends AppCompatActivity {
     public int getTipResu() {
         int tipChange = DEFAULT_TIP_CHANGE;
 
-        String strInputTipPercentage = inputBill.getText().toString().trim();
+        String strInputTipChange = inputBill.getText().toString().trim();
 
-        if(!strInputTipPercentage.isEmpty()) {
-            tipChange = Integer.parseInt(strInputTipPercentage);
+        if(!strInputTipChange.isEmpty()) {
+            tipChange = Integer.parseInt(strInputTipChange);
         }
         else {
             inputBill.setText(String.valueOf(DEFAULT_TIP_CHANGE));
