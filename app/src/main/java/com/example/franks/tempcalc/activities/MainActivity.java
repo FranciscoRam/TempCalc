@@ -1,36 +1,30 @@
-package com.example.franks.tempcalc;
-
-import com.example.franks.tempcalc.fragments.TipHistoryListFragment;
-import com.example.franks.tempcalc.fragments.TipHistoryListFragmentListener;
+package com.example.franks.tempcalc.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.hardware.input.InputManager;
-import android.net.Uri;
-
-
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
-
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-
-import android.view.inputmethod.InputMethod;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.franks.tempcalc.Datos;
+import com.example.franks.tempcalc.R;
+import com.example.franks.tempcalc.fragments.TipHistoryListFragment;
+import com.example.franks.tempcalc.fragments.TipHistoryListFragmentListener;
+
+import com.example.franks.tempcalc.R;
+import com.example.franks.tempcalc.TempCalcApp;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
 
 
 public class MainActivity extends AppCompatActivity {
