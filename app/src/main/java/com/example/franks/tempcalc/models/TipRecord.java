@@ -36,6 +36,15 @@ public class TipRecord {
         return tipPercentage;
     }
 
+    public String getTipFormated(){
+        double b = tipPercentage;
+        return String.valueOf(b);
+    }
+
+    public String getBillFormated(){
+
+        return String.valueOf(bill);
+    }
     public String getDateFormated() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM dd, yyyy HH:mm");
         return simpleDateFormat.format(timestamp);
